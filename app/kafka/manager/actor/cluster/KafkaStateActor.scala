@@ -524,7 +524,7 @@ trait OffsetCache extends Logging {
   }
 
   def getTopicPartitionOffsets(topic: String, interactive: Boolean): Future[PartitionOffsetsCapture] = {
-    if ((interactive || loadOffsets) && hasNonSecureEndpoint) {
+    if (interactive || loadOffsets) {
       partitionOffsetsCache.get(topic)
     } else {
       emptyPartitionOffsetsCapture
